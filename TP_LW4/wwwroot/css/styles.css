@@ -1,0 +1,11 @@
+/* Стиль для индикации ошибочных ситуаций */
+.field-validation-error {
+    color: red;
+}
+
+/* Стиль для элемента textBoxStyle */
+.textBoxStyle {
+    border: 1px solid #ccc;
+    padding: 5px;
+    font-size: 16px;
+}

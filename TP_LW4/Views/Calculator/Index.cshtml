@@ -1,0 +1,56 @@
+﻿@model TP_LW4.Models.CalculatorModel
+
+
+@{
+    ViewData["Title"] = "Calculator";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(m => m.Num1, new { @class = "textBoxStyle" })
+        @Html.TextBoxFor(m => m.Num1)
+        @Html.ValidationMessageFor(m => m.Num1)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Num2)
+        @Html.TextBoxFor(m => m.Num2)
+        @Html.ValidationMessageFor(m => m.Num2)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Operation)
+        @Html.DropDownListFor(m => m.Operation, new SelectList(new List<string> { "Add", "Subtract", "Multiply", "Divide" }))
+    </div>
+
+    <button type="submit" name="action" value="calculate">Calculate</button>
+    <button type="reset" name="action" value="clear">Clear</button>
+}
+
+@if (ViewBag.Result != null)
+{
+    <div>
+        @if (ViewBag.Result == 0)
+        {
+            <h2>The result is zero.</h2>
+        }
+        else if (ViewBag.Result > 0)
+        {
+            <h2>The result is positive.</h2>
+        }
+        else
+        {
+            <h2>The result is negative.</h2>
+        }
+        <h2>Result: @ViewBag.Result</h2>
+    </div>
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
